@@ -12,7 +12,7 @@
 <body>
 <div class="validation">
     <h4>请输入邀请码</h4>
-    <input type="tel" name="" maxlength="6" value="">
+    <input type="tel" name="code" maxlength="6" value="">
 </div>
 </body>
 </html>
@@ -38,8 +38,22 @@ input{
 <script>
     $(function(){
         $('input').focus().on('keyup',function(){
-            if($(this).val().length==6){
-                alert('提交')
+            var val=$(this).val();
+
+            if(val.length==6){
+             $.ajax({
+                          type: "post",
+                          url: "/index.php",
+                          data: {code:val},
+                          dataType: "json",
+                          success: function(data){
+if('false'==data){
+    alert('推荐码错误');
+}else{
+    window.location.href='/vote.html';
+}
+                                   }
+                      });
             }
         });
 
