@@ -44,47 +44,38 @@ class export {
          $objPHPExcel->getActiveSheet()->getStyle('J')->getAlignment()->setWrapText(true);*/
 //$objPHPExcel->getActiveSheet()->mergeCells('A1:A2');
 //$objPHPExcel->getActiveSheet()->unmergeCells('A1:A2');
-        $objActSheet->getColumnDimension('J')->setWidth(50);
-        $objActSheet->getColumnDimension('K')->setWidth(50);
-
-        $ASCII = 65;
-        $objActSheet->setCellValue(chr($ASCII++) . '1', '订单编号');
-        $objActSheet->setCellValue(chr($ASCII++) . '1', '批次名称');
-        $objActSheet->setCellValue(chr($ASCII++) . '1', '学校');
-        $objActSheet->setCellValue(chr($ASCII++) . '1', '姓名');
-        $objActSheet->setCellValue(chr($ASCII++) . '1', '性别');
-        $objActSheet->setCellValue(chr($ASCII++) . '1', '手机');
-        $objActSheet->setCellValue(chr($ASCII++) . '1', '地址');
-        $objActSheet->setCellValue(chr($ASCII++) . '1', '快递单号');
-        $objActSheet->setCellValue(chr($ASCII++) . '1', '快递公司');
-        $objActSheet->setCellValue(chr($ASCII++) . '1', '产品清单');
-        $objActSheet->setCellValue(chr($ASCII++) . '1', '发货详情');
-        $objActSheet->setCellValue(chr($ASCII++) . '1', '备注');
-        $objActSheet->setCellValue(chr($ASCII++) . '1', '是否扫描');
-
-        $column=2;
-        //$datas=[['order_sn'=>'6909759053412631','pro_name'=>'测试学校','nickname'=>'陈翔宇','name'=>'翔宇','phone'=>'15000694560','address'=>'dadad','pro_info'=>'产品名称','fa_huo_info'=>'发货信息','note'=>'备注','is_sao_miao'=>'是否扫描'],['order_sn'=>'6909759053412631','pro_name'=>'测试学校','nickname'=>'陈翔宇','name'=>'翔宇','phone'=>'15000694560','address'=>'dadad','pro_info'=>'产品名称','fa_huo_info'=>'发货信息','note'=>'备注','is_sao_miao'=>'是否扫描']];   //示例数组
+        $objActSheet->getColumnDimension('J')->setWidth(15);
+        $objActSheet->getColumnDimension('K')->setWidth(20);
+        $headArr=['中文姓名','性别','姓名拼音','出生日期','护照号码','国籍','是否有对食物过敏','过敏食物名称','是否有对药物过敏','过敏药物名称','是否有个人特殊要求','特殊要求','家长中文姓名','家长(监护人)护照英文姓名拼音)','出生日期','关系','国籍','护照号码','联系电话','是否有移民需求','孩子将来是否有赴美教育规划','电子邮件','地址','邮政编码','紧急联系人','与紧急联系人关系','联系电话','微信','报名选项','套餐内容选项'];
+        $key = 0;
+        foreach($headArr as $v){
+            //注意，不能少了。将列数字转换为字母\
+            $colum = \PHPExcel_Cell::stringFromColumnIndex($key);
+            $objPHPExcel->setActiveSheetIndex(0) ->setCellValue($colum.'1', $v);
+            $key += 1;
+        }
 
 
-        foreach ($datas as $v){
+        $column = 2; //从第二行写入数据 第一行是表头
 
-            $ASCII = 65;
-            $objActSheet->setCellValue(chr($ASCII++) . $column, 'xcada');
-            $objActSheet->setCellValue(chr($ASCII++) . $column, 'xcada');
-            $objActSheet->setCellValue(chr($ASCII++) . $column, 'xcada');
-            $objActSheet->setCellValue(chr($ASCII++) . $column, 'xcada');
-            $objActSheet->setCellValue(chr($ASCII++) . $column, 'xcada');
-            $objActSheet->setCellValue(chr($ASCII++) . $column, 'xcada');
-            $objActSheet->setCellValue(chr($ASCII++) . $column, 'xcada');
-            $objActSheet->setCellValue(chr($ASCII++) . $column, 'xcada');
-            $objActSheet->setCellValue(chr($ASCII++) . $column,  'xcada');
-            $objActSheet->setCellValue(chr($ASCII++) . $column, 'xcada');
-            $objActSheet->setCellValue(chr($ASCII++) . $column, 'xcada');
-            $objActSheet->setCellValue(chr($ASCII++) . $column, 'xcada');
-            $objActSheet->setCellValue(chr($ASCII++) . $column, 'xcada');
 
+        foreach($datas as $key => $rows){ //行写入
+           //取出多余字段
+            unset($rows['id']);
+            unset($rows['created_at']);
+            unset($rows['updated_at']);
+           //dd($rows);
+            $span = 0;
+            foreach($rows as $keyName=>$value){// 列写入
+
+                $j = \PHPExcel_Cell::stringFromColumnIndex($span);
+                $objActSheet->setCellValue($j.$column, $value);
+                $span++;
+            }
             $column++;
         }
+
+
 
 
 

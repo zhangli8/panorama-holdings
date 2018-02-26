@@ -536,11 +536,16 @@
                          data: post,
                          dataType: "json",
                          success: function(data){
-
+if('ok'==data){
+    $('.modal-body').text('提交成功!');
+    $('#myModal').modal();
+}else{
+    $('.modal-body').text('提交失败,请重试!');
+    $('#myModal').modal();
+}
                                   }
                      });
-            $('.modal-body').text('提交成功!');
-            $('#myModal').modal();
+
         };
     });
 </script>
