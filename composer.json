@@ -9,5 +9,11 @@
             "Model\\": "vendor/model"
         }
 
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
     }
 }
