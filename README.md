@@ -1,3 +1,1 @@
 # panorama-holdings
-
-zjw test
