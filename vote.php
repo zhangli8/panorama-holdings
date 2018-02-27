@@ -498,10 +498,11 @@ if(!isset($_SESSION['views'])){
     });
 
     $('.package').click(function(){
+
         $(this).find('.radio').eq(0).find('input').prop('checked',true);
         $('.package').css('border','1px dashed #ccc');
         $(this).css('border','1px solid #337ab7');
-        if($(this).find('input').length==2){
+        if($(this).find('input').length<2){
             $(this).siblings('.package').find('input').each(function(){
                 $(this).prop('checked',false);
             })
