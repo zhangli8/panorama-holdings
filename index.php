@@ -19,11 +19,15 @@ if(isset($_POST['code'])){
 
 }else{
     if(isset($_SESSION['views'])){
+
         //session_destroy();
-        header("location:vote.html");
+        header("location:vote.php");
     }else{
         header("location:validation.html");
     }
 }
+?>
+
+
 
 

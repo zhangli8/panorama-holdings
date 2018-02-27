@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['views'])){
+    header("location:validation.html");
+}; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
