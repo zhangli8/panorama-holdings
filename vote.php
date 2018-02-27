@@ -501,6 +501,11 @@ if(!isset($_SESSION['views'])){
         $(this).find('.radio').eq(0).find('input').prop('checked',true);
         $('.package').css('border','1px dashed #ccc');
         $(this).css('border','1px solid #337ab7');
+        if($(this).find('input').length==2){
+            $(this).siblings('.package').find('input').each(function(){
+                $(this).prop('checked',false);
+            })
+        }
     });
 
     $('.submit').click(function(){
@@ -537,21 +542,20 @@ if(!isset($_SESSION['views'])){
             // 提交表单
             var post=$('#myform').serialize();
             $.ajax({
-                         type: "post",
-                         url: "/post.php",
-                         data: post,
-                         dataType: "json",
-                         success: function(data){
-if('ok'==data){
-    $('.modal-body').text('提交成功!');
-    $('#myModal').modal();
-}else{
-    $('.modal-body').text('提交失败,请重试!');
-    $('#myModal').modal();
-}
-                                  }
-                     });
-
+                type: "post",
+                url: "/post.php",
+                data: post,
+                dataType: "json",
+                success: function(data){
+                    if('ok'==data){
+                        $('.modal-body').text('提交成功!');
+                        $('#myModal').modal();
+                    }else{
+                        $('.modal-body').text('提交失败,请重试!');
+                        $('#myModal').modal();
+                    }
+                }
+            });
         };
     });
 </script>
