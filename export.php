@@ -8,7 +8,7 @@ class export {
         $objPHPExcel->createSheet();
         $objPHPExcel->setActiveSheetIndex(0);
 
-        $objActSheet = $objPHPExcel->getActiveSheet()->setTitle('微信数据汇总');
+        $objActSheet = $objPHPExcel->getActiveSheet()->setTitle('报名表数据汇总');
 
 //$objPHPExcel->getActiveSheet()->mergeCells('A1:B1');//合并单元格
 
@@ -79,7 +79,7 @@ class export {
 
 
 
-        $fileName = iconv("utf-8", "gb2312", '淘宝数据汇总表格' . date('Ymd') . '.xls');
+        $fileName = iconv("utf-8", "gb2312", '报名表数据汇总表格' . date('Ymd') . '.xls');
 
         ob_end_clean();
         header('Content-Type: application/vnd.ms-excel');
