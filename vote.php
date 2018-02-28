@@ -279,7 +279,7 @@ if(!isset($_SESSION['views'])){
         </div>
 
         <div class="form-group">
-            <label>营队套餐内容选项</label>
+            <h3 class="text-center">营队套餐内容选项</h3>
             <div class="radio">
                 <label>
                     <input type="radio" name="packages1" value="生存力及领导力主题+科学领域主题" checked> 生存力及领导力主题+科学领域主题

@@ -43,14 +43,14 @@ input{
             if(val.length==6){
              $.ajax({
                           type: "post",
-                          url: "/index.php",
+                          url: "/form/index.php",
                           data: {code:val},
                           dataType: "json",
                           success: function(data){
 if('false'==data){
     alert('推荐码错误');
 }else{
-    window.location.href='/vote.php';
+    window.location.href='/form/vote.php';
 }
                                    }
                       });
