@@ -25,31 +25,32 @@ if(!isset($_SESSION['views'])){
 		<div class="title">
 			<img class="img-responsive" src="images/timg.png" alt="2018长江商学院美国暑期亲子游学报名表">
         </div>
+        <input type="hidden" class="xueyuan-number" name="num" value="1">
         <div class="xueyuanxinxi">
             <h3 class="text-center">学员个人信息</h3>
             <div must class="form-group">
                 <label>孩子中文姓名</label>
-                <input type="text" class="form-control" name="name" placeholder="请输入孩子中文姓名">
+                <input type="text" class="form-control" name="name1" placeholder="请输入孩子中文姓名">
             </div>
             <div class="form-group">
                 <label>孩子性别</label>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="sex" value="男" checked> 男
+                        <input type="radio" name="sex1" value="男" checked> 男
                     </label>
                     <label>
-                        <input type="radio" name="sex" value="女"> 女
+                        <input type="radio" name="sex1" value="女"> 女
                     </label>
                 </div>
             </div>
             <div must class="form-group">
                 <label>护照英文姓名拼音</label>
-                <input type="text" class="form-control" name="e_name" placeholder="请输入护照英文姓名拼音">
+                <input type="text" class="form-control" name="e_name1" placeholder="请输入护照英文姓名拼音">
             </div>
             <div must class="form-group">  
                 <label>出生日期</label>  
                 <div class="input-group date">  
-                    <input type="text" name="birthday" class="form-control">
+                    <input type="text" name="birthday1" class="form-control">
                     <span class="input-group-addon">  
                         <i class="glyphicon glyphicon-calendar"></i>  
                     </span>  
@@ -57,46 +58,46 @@ if(!isset($_SESSION['views'])){
             </div>
             <div must class="form-group">
                 <label>护照号码</label>
-                <input type="text" class="form-control" name="passport" placeholder="请输入护照号码">
+                <input type="text" class="form-control" name="passport1" placeholder="请输入护照号码">
             </div>
             <div must class="form-group">
                 <label>国籍</label>
-                <input type="text"  name="nationality" class="form-control" placeholder="请输入国籍">
+                <input type="text"  name="nationality1" class="form-control" placeholder="请输入国籍">
             </div>
             <div must class="form-group">
                 <label>是否有对食物过敏?</label>
                 <div class="fill">
                     <label>
-                        <input type="radio" name="is_food" value="是"> 是
+                        <input type="radio" name="is_food1" value="是"> 是
                     </label>
                     <label>
-                        <input type="radio" name="is_food" value="否" checked> 否
+                        <input type="radio" name="is_food1" value="否" checked> 否
                     </label>
-                    <input style="display:none" type="text" name="food_name" class="form-control text" placeholder="请输入过敏食物">
+                    <input style="display:none" type="text" name="food_name1" class="form-control text" placeholder="请输入过敏食物">
                 </div>
             </div>
             <div must class="form-group">
                 <label>是否有对药物过敏?</label>
                 <div class="fill">
                     <label>
-                        <input type="radio" name="is_medicine" value="是"> 是
+                        <input type="radio" name="is_medicine1" value="是"> 是
                     </label>
                     <label>
-                        <input type="radio" name="is_medicine" value="否" checked> 否
+                        <input type="radio" name="is_medicine1" value="否" checked> 否
                     </label>
-                    <input style="display:none" type="text" class="form-control text" name="medicine_name" placeholder="请输入过敏药物">
+                    <input style="display:none" type="text" class="form-control text" name="medicine_name1" placeholder="请输入过敏药物">
                 </div>
             </div>
             <div must class="form-group">
                 <label>是否有个人特殊要求?</label>
                 <div class="fill">
                     <label>
-                        <input type="radio" name="is_require" value="是"> 是
+                        <input type="radio" name="is_require1" value="是"> 是
                     </label>
                     <label>
-                        <input type="radio" name="is_require" value="否" checked> 否
+                        <input type="radio" name="is_require1" value="否" checked> 否
                     </label>
-                    <input style="display:none" type="text" name="require_name" class="form-control text" placeholder="请输入个人特殊要求">
+                    <input style="display:none" type="text" name="require_name1" class="form-control text" placeholder="请输入个人特殊要求">
                 </div>
             </div>
         </div>
@@ -448,11 +449,12 @@ if(!isset($_SESSION['views'])){
             format: 'YYYY-MM-DD',  
             locale: moment.locale('zh-cn')  
         });
-        $('.date input').click(function(){
+        $(document).on('click','.date input',function(){
             $(this).parents('.date').find('span').click();
         });
 
-        $('.fill input[type=radio]').change(function(){
+        $(document).on('change','.fill input[type=radio]',function(){
+            console.log(1)
             if($(this).val()=='是'){
                 $(this).parents('.fill').find('.text').show(0);
             }else{
@@ -498,7 +500,6 @@ if(!isset($_SESSION['views'])){
     });
 
     $('.package').click(function(){
-
         $(this).find('.radio').eq(0).find('input').prop('checked',true);
         $('.package').css('border','1px dashed #ccc');
         $(this).css('border','1px solid #337ab7');
@@ -523,7 +524,6 @@ if(!isset($_SESSION['views'])){
                     return false;
                 };
             };
-
             // 过敏校验
             if($(this).find('.fill').length){
                 var gm=$(this).find('input:checked').val();
@@ -561,6 +561,87 @@ if(!isset($_SESSION['views'])){
     });
 
     $('.add-xueyuan').click(function(){
-        $(this).prev($('.xueyuanxinxi').clone());
+        var leng=$('.xueyuanxinxi').length+1;
+        var xinxi='<div class="xueyuanxinxi">\n' +
+            '            <h3 class="text-center">学员个人信息'+leng+'</h3>\n' +
+            '            <div must class="form-group">\n' +
+            '                <label>孩子中文姓名</label>\n' +
+            '                <input type="text" class="form-control" name="name'+leng+'" placeholder="请输入孩子中文姓名">\n' +
+            '            </div>\n' +
+            '            <div class="form-group">\n' +
+            '                <label>孩子性别</label>\n' +
+            '                <div class="radio">\n' +
+            '                    <label>\n' +
+            '                        <input type="radio" name="sex'+leng+'" value="男" checked> 男\n' +
+            '                    </label>\n' +
+            '                    <label>\n' +
+            '                        <input type="radio" name="sex'+leng+'" value="女"> 女\n' +
+            '                    </label>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '            <div must class="form-group">\n' +
+            '                <label>护照英文姓名拼音</label>\n' +
+            '                <input type="text" class="form-control" name="e_name'+leng+'" placeholder="请输入护照英文姓名拼音">\n' +
+            '            </div>\n' +
+            '            <div must class="form-group">  \n' +
+            '                <label>出生日期</label>  \n' +
+            '                <div class="input-group date">  \n' +
+            '                    <input type="text" name="birthday'+leng+'" class="form-control">\n' +
+            '                    <span class="input-group-addon">  \n' +
+            '                        <i class="glyphicon glyphicon-calendar"></i>  \n' +
+            '                    </span>  \n' +
+            '                </div>  \n' +
+            '            </div>\n' +
+            '            <div must class="form-group">\n' +
+            '                <label>护照号码</label>\n' +
+            '                <input type="text" class="form-control" name="passport'+leng+'" placeholder="请输入护照号码">\n' +
+            '            </div>\n' +
+            '            <div must class="form-group">\n' +
+            '                <label>国籍</label>\n' +
+            '                <input type="text"  name="nationality'+leng+'" class="form-control" placeholder="请输入国籍">\n' +
+            '            </div>\n' +
+            '            <div must class="form-group">\n' +
+            '                <label>是否有对食物过敏?</label>\n' +
+            '                <div class="fill">\n' +
+            '                    <label>\n' +
+            '                        <input type="radio" name="is_food'+leng+'" value="是"> 是\n' +
+            '                    </label>\n' +
+            '                    <label>\n' +
+            '                        <input type="radio" name="is_food'+leng+'" value="否" checked> 否\n' +
+            '                    </label>\n' +
+            '                    <input style="display:none" type="text" name="food_name'+leng+'" class="form-control text" placeholder="请输入过敏食物">\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '            <div must class="form-group">\n' +
+            '                <label>是否有对药物过敏?</label>\n' +
+            '                <div class="fill">\n' +
+            '                    <label>\n' +
+            '                        <input type="radio" name="is_medicine'+leng+'" value="是"> 是\n' +
+            '                    </label>\n' +
+            '                    <label>\n' +
+            '                        <input type="radio" name="is_medicine'+leng+'" value="否" checked> 否\n' +
+            '                    </label>\n' +
+            '                    <input style="display:none" type="text" class="form-control text" name="medicine_name'+leng+'" placeholder="请输入过敏药物">\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '            <div must class="form-group">\n' +
+            '                <label>是否有个人特殊要求?</label>\n' +
+            '                <div class="fill">\n' +
+            '                    <label>\n' +
+            '                        <input type="radio" name="is_require'+leng+'" value="是"> 是\n' +
+            '                    </label>\n' +
+            '                    <label>\n' +
+            '                        <input type="radio" name="is_require'+leng+'" value="否" checked> 否\n' +
+            '                    </label>\n' +
+            '                    <input style="display:none" type="text" name="require_name'+leng+'" class="form-control text" placeholder="请输入个人特殊要求">\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>';
+        $(this).before(xinxi);
+        $('.xueyuan-number').val(leng+1);
+        $('.date').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn')
+        });
     });
 </script>

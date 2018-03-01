@@ -17,7 +17,7 @@
   margin-bottom: 20px;
 }
 .wrapper .form-group label {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: normal;
 }
 .wrapper .form-group input {
@@ -79,4 +79,8 @@
 .book .book1,
 .book .book2 {
   display: none;
+}
+.add-xueyuan{
+  width:100%;
+  margin-bottom: 20px;
 }
