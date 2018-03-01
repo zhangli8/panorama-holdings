@@ -638,7 +638,7 @@ if(!isset($_SESSION['views'])){
             '            </div>\n' +
             '        </div>';
         $(this).before(xinxi);
-        $('.xueyuan-number').val(leng+1);
+        $('.xueyuan-number').val(leng);
         $('.date').datetimepicker({
             format: 'YYYY-MM-DD',
             locale: moment.locale('zh-cn')

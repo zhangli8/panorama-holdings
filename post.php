@@ -53,7 +53,7 @@ function get_p_info($data)
        return $array;
    }
 function get_s_info($data){
-  $num=2;//学院数量;
+  $num=$data['num'];//学院数量;
     $new_array=[];
     for ($i=1; $i<=$num; $i++)
     {
