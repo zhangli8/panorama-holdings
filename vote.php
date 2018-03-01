@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['views'])){
-    header("location:validation.html");
+    header("location:form/validation.html");
 }; ?>
 
 <!DOCTYPE html>
@@ -86,7 +86,8 @@ if(!isset($_SESSION['views'])){
                 <label>
                     <input type="radio" name="is_medicine" value="否" checked> 否
                 </label>
-                <input style="display:none" type="text" class="form-control text" placeholder="请输入过敏药物">
+                <input style="display:none" type="text" class="form-control text" name="medicine_name" placeholder="请输入过敏药物">
+
             </div>
         </div>
         <div must class="form-group">
@@ -544,7 +545,7 @@ if(!isset($_SESSION['views'])){
             var post=$('#myform').serialize();
             $.ajax({
                 type: "post",
-                url: "/post.php",
+                url: "/form/post.php",
                 data: post,
                 dataType: "json",
                 success: function(data){

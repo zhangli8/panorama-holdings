@@ -13,10 +13,10 @@ namespace Model;
  * @author  wumengmeng <wu_mengmeng@foxmail.com>
  * @package Model
  */
-class S_info extends BaseModel{
-    protected $table='s_info';
+class P_info extends BaseModel{
+    protected $table='p_info';
     protected $guarded=[];
-public function p_info(){
-    return $this->belongsTo('Model\P_info','p_info_id');
+public function s_info(){
+    return $this->hasMany('Model\S_info','p_info_id');
 }
 }

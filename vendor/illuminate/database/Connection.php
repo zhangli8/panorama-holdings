@@ -504,7 +504,7 @@ class Connection implements ConnectionInterface {
 	 */
 	public function rollBack()
 	{
-		if ($this->transactions == 1)
+        if ($this->transactions == 1)
 		{
 			$this->transactions = 0;
 

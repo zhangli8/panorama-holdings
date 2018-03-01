@@ -10,7 +10,7 @@ class export {
 
         $objActSheet = $objPHPExcel->getActiveSheet()->setTitle('报名表数据汇总');
 
-//$objPHPExcel->getActiveSheet()->mergeCells('A1:B1');//合并单元格
+//$objPHPExcel->getActiveSheet()->mergeCells('A2:A3');//合并单元格
 
         $objActSheet->getDefaultStyle()->getFont()->setSize(10);
         /* $objActSheet->getStyle('A:U')->getAlignment()->applyFromArray(array('horizontal' => '', 'vertical' => 'center', 'rotation' => 0, 'wrap' => TRUE));
@@ -64,7 +64,9 @@ class export {
             unset($rows['id']);
             unset($rows['created_at']);
             unset($rows['updated_at']);
-           //dd($rows);
+            unset($rows['p_info']);
+            unset($rows['p_info_id']);
+
             $span = 0;
             foreach($rows as $keyName=>$value){// 列写入
 
@@ -77,7 +79,7 @@ class export {
 
 
 
-
+       // $objPHPExcel->getActiveSheet()->mergeCells('A2:A3');//合并单元格
 
         $fileName = iconv("utf-8", "gb2312", '报名表数据汇总表格' . date('Ymd') . '.xls');
 
