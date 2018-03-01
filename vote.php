@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['views'])){
-    header("location:form/validation.html");
+    header("location:/form/validation.html");
 }; ?>
 
 <!DOCTYPE html>

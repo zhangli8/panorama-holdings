@@ -92,7 +92,7 @@ try{
    }
 
     $s_res=\Model\S_info::Insert($s_info);
-   
+
      if(!$s_res){
          throw new Exception('失败');
      }
