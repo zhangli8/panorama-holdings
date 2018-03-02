@@ -560,10 +560,14 @@ if(!isset($_SESSION['views'])){
         };
     });
 
+    $(document).on('click','.xueyuanxinxi-close',function(){
+        $(this).parents('.xueyuanxinxi').remove();
+    });
+
     $('.add-xueyuan').click(function(){
         var leng=$('.xueyuanxinxi').length+1;
         var xinxi='<div class="xueyuanxinxi">\n' +
-            '            <h3 class="text-center">第'+leng+'位学员个人信息</h3>\n' +
+            '            <h3 class="text-center">第'+leng+'位学员个人信息</h3><a class="xueyuanxinxi-close">&times</a>\n' +
             '            <div must class="form-group">\n' +
             '                <label>孩子中文姓名</label>\n' +
             '                <input type="text" class="form-control" name="name'+leng+'" placeholder="请输入孩子中文姓名">\n' +
