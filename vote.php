@@ -101,7 +101,7 @@ if(!isset($_SESSION['views'])){
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-primary btn-lg add-xueyuan">增加学员</button>
+        <button type="button" class="btn btn-primary btn-lg add-xueyuan">再增加一位学员信息</button>
 
         <h3 class="text-center">家长/监护人个人信息</h3>
 
@@ -563,7 +563,7 @@ if(!isset($_SESSION['views'])){
     $('.add-xueyuan').click(function(){
         var leng=$('.xueyuanxinxi').length+1;
         var xinxi='<div class="xueyuanxinxi">\n' +
-            '            <h3 class="text-center">学员个人信息'+leng+'</h3>\n' +
+            '            <h3 class="text-center">第'+leng+'位学员个人信息</h3>\n' +
             '            <div must class="form-group">\n' +
             '                <label>孩子中文姓名</label>\n' +
             '                <input type="text" class="form-control" name="name'+leng+'" placeholder="请输入孩子中文姓名">\n' +
