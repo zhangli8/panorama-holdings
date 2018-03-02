@@ -83,4 +83,18 @@
 .add-xueyuan{
   width:100%;
   margin-bottom: 20px;
+  font-size:16px;
+}
+.xueyuanxinxi{
+  position: relative;
+}
+.xueyuanxinxi-close{
+  position: absolute;
+  right:0;
+  top:0;
+  text-align: center;
+  width:40px;
+  line-height: 40px;
+  color: #fff;
+  background: #ff5c5c;
 }
